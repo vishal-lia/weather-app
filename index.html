@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="weatherApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Weather App</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Forecast</a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <ng-view></ng-view>
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>
