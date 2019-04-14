@@ -24,9 +24,9 @@ weatherApp.service('cityService', function() {
 });
 
 // CUSTOM DERECTIVES
-weatherApp.directive('panel', function() {
+weatherApp.directive('weather', function() {
     return {
-        templateUrl: 'directives/panel.html',
+        templateUrl: 'directives/weatherReport.html',
         replace: true,
         scope: {
             weatherReport: '=',
@@ -37,12 +37,17 @@ weatherApp.directive('panel', function() {
 });
 
 // CONTROLLERS
-weatherApp.controller('homeController', ['$scope', '$log', 'cityService', function($scope, $log, cityService) {
+weatherApp.controller('homeController', ['$scope', '$log', '$location', 'cityService', 
+function($scope, $log, $location, cityService) {
     $scope.city = cityService.city;
 
     $scope.$watch('city', function() {
         cityService.city = $scope.city;
     });
+
+    $scope.submit = function() {
+        $location.path('/forecast');
+    }
 }]);
 
 weatherApp.controller('forecastController', ['$scope', '$log', '$resource', '$routeParams', 'cityService', 
@@ -50,7 +55,7 @@ weatherApp.controller('forecastController', ['$scope', '$log', '$resource', '$ro
     $scope.city = cityService.city;
     $scope.days = $routeParams.days || 2;
 
-    $scope.weatherAPI = $resource('https://api.openweathermap.org/data/2.5/forecast');
+    $scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast');
 
     $scope.weatherResult = $scope.weatherAPI.get({
         q: $scope.city,
